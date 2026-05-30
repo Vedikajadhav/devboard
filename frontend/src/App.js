@@ -6,14 +6,14 @@ function App() {
   const [newTask, setNewTask] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/tasks')
+    fetch('https://devboard-production-e311.up.railway.app/api/tasks')
       .then(res => res.json())
       .then(data => setTasks(data));
   }, []);
 
   const addTask = async () => {
     if (!newTask.trim()) return;
-    const res = await fetch('http://localhost:5000/api/tasks', {
+    const res = await fetch('https://devboard-production-e311.up.railway.app/api/tasks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: newTask })
@@ -24,7 +24,7 @@ function App() {
   };
 
   const toggleTask = async (id) => {
-    const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+    const res = await fetch(`https://devboard-production-e311.up.railway.app/api/tasks/${id}`, {
       method: 'PUT'
     });
     const updated = await res.json();
@@ -32,7 +32,7 @@ function App() {
   };
 
   const deleteTask = async (id) => {
-    await fetch(`http://localhost:5000/api/tasks/${id}`, {
+    await fetch(`https://devboard-production-e311.up.railway.app/api/tasks/${id}`, {
       method: 'DELETE'
     });
     setTasks(tasks.filter(t => t._id !== id));
